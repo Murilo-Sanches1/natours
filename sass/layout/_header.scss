@@ -1,0 +1,49 @@
+.header {
+  height: 90vh;
+  background-image: linear-gradient(
+      to right,
+      rgba($primaryLight, 0.5),
+      rgba($primaryDark, 0.5)
+    ),
+    url(../assets/images/hero-small.jpg);
+  background-size: cover;
+  background-position: top;
+  position: relative;
+
+  @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+    height: 100vh;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+  }
+
+  @media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+    only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+    only screen and (min-width: 125em),
+    (min-width: 125em) {
+    background-image: linear-gradient(
+        to right,
+        rgba($primaryLight, 0.5),
+        rgba($primaryDark, 0.5)
+      ),
+      url(../assets/images/hero.jpg);
+  }
+
+  @include resize(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90vh, 0 100%);
+  }
+
+  &__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+  &__logo {
+    height: 3.5rem;
+  }
+
+  &__text-box {
+    @include absoluteCenter(40%);
+    text-align: center;
+  }
+}

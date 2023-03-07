@@ -1,0 +1,95 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    border-radius: 5rem;
+    transition: all 0.2s;
+    position: relative;
+    font-size: $defaultFontSize;
+    border: none;
+    cursor: pointer;
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem $rgba20;
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem $rgba20;
+  }
+
+  &--white {
+    background-color: $white;
+    color: $greyDark1;
+
+    &::after {
+      background-color: $white;
+    }
+  }
+
+  &--green {
+    background-color: $primary;
+    color: $white;
+
+    &::after {
+      background-color: $primary;
+    }
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    // + after é tratado como filho do elemento em si, assim a altura e a largura são herdadas (100%)
+    height: 100%;
+    width: 100%;
+    border-radius: 5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.4s;
+  }
+
+  &--animated {
+    animation: moveInBottom 0.5s ease-out 0.75s;
+    // + aplicar os estados iniciais até o delay de 0.75s
+    animation-fill-mode: backwards;
+  }
+}
+
+.btn-text {
+  &:link,
+  &:visited {
+    font-size: 2rem;
+    color: $primary;
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 0.1rem solid $primary;
+    padding: 0.3rem;
+    transition: all 0.2s;
+  }
+
+  &:hover {
+    background-color: $primary;
+    color: $white;
+    box-shadow: 0 1rem 2rem $rgba15;
+    transform: translateY(-0.2rem);
+  }
+
+  &:active {
+    box-shadow: 0 0.5rem 2rem $rgba15;
+    transform: translateY(0);
+  }
+}

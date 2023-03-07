@@ -1,0 +1,113 @@
+.section-about {
+  background-color: $greyLight1;
+  padding: 25rem 0;
+
+  // + -20vh para cobrir o espaço em branco que o clip-pah() de triângulo causou
+  // - 100vh - altura total, 80vh - altura do triângulo = 20vh de white space
+  margin-top: -20vh;
+
+  @include resize(tabPort) {
+    padding: 20rem 0;
+  }
+}
+
+.section-features {
+  padding: 20rem 0;
+  background-image: linear-gradient(
+      to right,
+      rgba($primaryLight, 0.8),
+      rgba($primaryDark, 0.8)
+    ),
+    url(../assets/images/nat-4.jpg);
+  background-size: cover;
+  transform: skewY(-7deg);
+  margin-top: -10rem;
+
+  // + selecionando tudo que é filho direto de .section-features, no caso é a row
+  & > * {
+    transform: skewY(7deg);
+  }
+
+  @include resize(tabPort) {
+    padding: 10rem 0;
+  }
+}
+
+.section-tours {
+  background-color: $greyLight1;
+  padding: 25rem 0 10rem 0;
+  margin-top: -10rem;
+
+  @include resize(tabPort) {
+    padding: 20rem 0 10rem 0;
+  }
+}
+
+.section-stories {
+  padding: 15rem 0;
+  position: relative;
+
+  @include resize(tabPort) {
+    padding: 10rem 0;
+  }
+}
+
+.section-book {
+  padding: 15rem 0;
+  background-image: linear-gradient(
+    to right bottom,
+    $primaryLight,
+    $primaryDark
+  );
+
+  @include resize(tabPort) {
+    padding: 10rem 0;
+  }
+}
+
+.book {
+  background-image: linear-gradient(
+      105deg,
+      rgba($white, 0.9) 0%,
+      rgba($white, 0.9) 50%,
+      transparent 50%
+    ),
+    url(../assets/images/nat-10.jpg);
+  background-size: cover; // + mesma coisa que cover
+  border-radius: 0.3px;
+  box-sizing: 0 1.5rem 4rem $rgba20;
+
+  @include resize(tabLand) {
+    background-image: linear-gradient(
+        105deg,
+        rgba($white, 0.9) 0%,
+        rgba($white, 0.9) 65%,
+        transparent 65%
+      ),
+      url(../assets/images/nat-10.jpg);
+    background-size: cover;
+  }
+
+  @include resize(tabPort) {
+    background-image: linear-gradient(
+        to right,
+        rgba($white, 0.9) 0%,
+        rgba($white, 0.9) 100%
+      ),
+      url(../assets/images/nat-10.jpg);
+    background-size: cover;
+  }
+
+  &__form {
+    width: 50%;
+    padding: 6rem;
+
+    @include resize(tabLand) {
+      width: 65%;
+    }
+
+    @include resize(tabPort) {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  // ! má prática definir em px, porque vai sobrescrever o tamanho do browser
+  // + se o usuário usar uma porcentagem modificada como padrão (125% como eu) px não vai casar bem
+  // ! font-size: 10px;
+
+  font-size: 62.5%; // + 1rem = 10px; 10px/16px = 62.5%
+
+  @include resize(tabLand) {
+    font-size: 56.25%; // + 1rem = 9px; 9px/16 = 56.25%
+  }
+
+  @include resize(tabPort) {
+    font-size: 50%; // + 1rem = 8px; 8px/16px = 50%
+  }
+
+  @include resize(bigDesk) {
+    font-size: 75%; // + 1rem = 12px; 12px/16px = 75%
+  }
+}
+
+body {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: $primary;
+  color: $white;
+}

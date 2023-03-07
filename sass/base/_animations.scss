@@ -1,0 +1,53 @@
+@keyframes moveInLeft {
+  // + 0% representa o começo
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+
+  // - entre o começo e o final, podemos colocar mais eventos em diferentes partes do "tempo"
+  80% {
+    transform: translateX(1rem);
+  }
+  // - entre o começo e o final, podemos colocar mais eventos em diferentes partes do "tempo"
+
+  // + 100% representa o final
+  100% {
+    opacity: 100;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInRight {
+  // + 0% representa o começo
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+
+  // - entre o começo e o final, podemos colocar mais eventos em diferentes partes do "tempo"
+  80% {
+    transform: translateX(-1rem);
+  }
+  // - entre o começo e o final, podemos colocar mais eventos em diferentes partes do "tempo"
+
+  // + 100% representa o final
+  100% {
+    opacity: 100;
+    transform: translateX(0);
+  }
+}
+
+@keyframes moveInBottom {
+  // + 0% representa o começo
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+
+  // + 100% representa o final
+  100% {
+    opacity: 100;
+    transform: translateY(0);
+  }
+}

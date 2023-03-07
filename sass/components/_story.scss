@@ -1,0 +1,89 @@
+.story {
+  width: 75%;
+  margin: 0 auto;
+  box-shadow: 0 3rem 6rem $rgba10;
+  background-color: rgba($white, 0.6);
+  border-radius: 0.3px;
+  // padding: 6rem;
+  // padding-left: 3rem;
+  padding: 6rem 6rem 6rem 9rem;
+  font-size: $defaultFontSize;
+  transform: skewX(-12deg);
+
+  @include resize(tabPort) {
+    width: 100%;
+    padding: 4rem;
+    padding-left: 7rem;
+  }
+
+  @include resize(phone) {
+    transform: skewX(0);
+  }
+
+  & > * {
+    transform: skewX(12deg);
+  }
+
+  &__shape {
+    width: 15rem;
+    height: 15rem;
+    float: left;
+    // - para funcionar e permitir o texto "entrar" no círculo, precisa de uma largura e altura definida
+    // - e também que o elemento esteja em modo float
+    -webkit-shape-outside: circle(50% at 50% 50%);
+    shape-outside: circle(50% at 50% 50%);
+    // -webkit-clip-path: circle(50% at 50% 50%);
+    // clip-path: circle(50% at 50% 50%);
+    border-radius: 50%;
+    overflow: hidden;
+    // + melhor jeito para mudar o x/y de um elemento float é usando transform
+    transform: translateX(-3rem) skewX(12deg);
+    position: relative;
+
+    @include resize(phone) {
+      transform: translateX(-3rem) skewX(0);
+    }
+  }
+
+  &__img {
+    height: 100%;
+    transform: translateX(-3.5rem) scale(1.4);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: all 0.5s;
+  }
+
+  &__text {
+    transform: skewX(12deg);
+
+    @include resize(phone) {
+      transform: skewX(0);
+    }
+  }
+
+  &__caption {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: $white;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  &:hover &__caption {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover &__img {
+    transform: translateX(-3.5rem) scale(1);
+    // + brightness abaixo de 1 (100%) fica mais escuro e acima fica mais claro
+    filter: blur(0.3rem) brightness(80%);
+  }
+}

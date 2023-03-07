@@ -1,0 +1,58 @@
+@mixin absoluteCenter($top: 50%, $left: 50%) {
+  // + top, left, bottom, right são referenciados a partir do elemento pai
+  position: absolute;
+  top: $top;
+  left: $left;
+  // + transform age diretamente nas próprias dimensões do elemento
+  transform: translate(-50%, -50%);
+}
+
+// + 0px - 600px: Phone
+// + 600px - 900px: Tablet Portrait
+// + 900px - 1200px: Tablet Landscape
+// + [1200px - 1800px] onde os estilos normais se aplicam
+// + 1800 +: Big Desktop
+@mixin respondPhone {
+  @media (max-width: 600px) {
+    @content;
+  }
+}
+/* 
+  - $breakpoint options:
+  - phone
+  - tabPort
+  - tabLand
+  - bigDesk
+*/
+// + order - base > typography > general layout > float/grid > page layout > components
+// ! 1em = 16px : sempre vai ser relativo a fonte do navegador do usuário
+@mixin resize($breakpoint) {
+  @if $breakpoint == phone {
+    // ! only screen só aplica na tela em si e não na impressão
+    // + 600px
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  // + 900px
+  @if $breakpoint == tabPort {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  // + 1200px
+  @if $breakpoint == tabLand {
+    @media only screen and (max-width: 75em) {
+      @content;
+    }
+  }
+
+  // + 1800px
+  @if $breakpoint == bigDesk {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    }
+  }
+}

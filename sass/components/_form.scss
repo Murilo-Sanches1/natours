@@ -1,0 +1,120 @@
+.form {
+  &__group:not(:last-child) {
+    margin-bottom: 2rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    font-family: inherit;
+    color: inherit;
+    padding: 1.5rem 2rem;
+    border-radius: 0.2px;
+    background-color: rgba($white, 0.5);
+    border: none;
+    border-bottom: 3px solid transparent;
+    width: 90%;
+    display: block;
+    transition: all 0.3s;
+
+    @include resize(tabPort) {
+      width: 100%;
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem $rgba10;
+      border-bottom: 3px solid $primary;
+    }
+
+    &::-webkit-input-placeholder {
+      color: #999;
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $secondaryDark;
+    }
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 2rem;
+    margin-top: 0.7rem;
+    display: block;
+    transition: all 0.3s;
+  }
+
+  // - selecionando o irmão direto de form__input que no caso é form__label
+  // - se existisse outro elemento antes do form__label, esse seria selecionado
+  // - &__input:placeholder-shown ~ &__label - desse jeito escolhemos o irmão sem depender da posição
+  // - se a form__label estivesse antes do form__input o sibling selector não funcionaria
+  // + placeholder-shown retorn uma boolean e diz se o usuário já começou a escrever
+  &__input:placeholder-shown + &__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  /*
+    + não da pra estilizar o input radio diretamente com css 
+    - <input type="radio" class="form__radio-input" id="large" name="size"/>
+    - <label for="large" class="form__radio-label">
+    -   <span class="form__radio-button"></span>
+    -   Grupo grande
+    - </label>
+    + mas da pra deixar o input hidden e quando clicar na label fazer ele ser selecionado
+    + e o span dentro da label ficaria parecendo o novo input
+    */
+  &__radio-group {
+    width: 49%;
+    display: inline-block;
+
+    @include resize(tabPort) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__radio-input {
+    display: none;
+  }
+
+  &__radio-label {
+    font-size: $defaultFontSize;
+    cursor: pointer;
+    position: relative;
+    padding-left: 5rem;
+  }
+
+  &__radio-button {
+    width: 3rem;
+    height: 3rem;
+    border: 5px solid $primary;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: -0.4rem;
+    left: 0;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: $primary;
+      opacity: 0;
+      transition: all 0.2s;
+    }
+  }
+
+  // + quando o input tiver a classe checked, temos que selecionar o sobrinho do irmão direto
+  // + para conseguirmos manipular o after e voltar a opacidade pra 1
+  &__radio-input:checked + &__radio-label &__radio-button::after {
+    opacity: 1;
+  }
+}

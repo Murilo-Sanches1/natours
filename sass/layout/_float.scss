@@ -1,0 +1,28 @@
+.row {
+  // - standard - definir pra 1140px
+  // - max-width para se adaptar aos tamanhos de tela menores também, o máximo que chega é 1140px
+  // - fluid layout
+  max-width: $gridWidth;
+  margin: 0 auto;
+
+  @include resize(tabPort) {
+    max-width: 50rem;
+    padding: 0 3rem;
+  }
+
+  // + .row:not(:last-child) - aplica uma margem para todos os elementos, exceto o útlimo
+  &:not(:last-child) {
+    margin-bottom: $gutterVertical;
+
+    @include resize(tabPort) {
+      margin-bottom: $gutterVerticalSmall;
+    }
+  }
+
+  // + .row::after
+  @include clearZeroHeightFloat;
+
+  @include regExpGridColSystem;
+
+  @include gridColSystem;
+}

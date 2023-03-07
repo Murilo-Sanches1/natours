@@ -1,0 +1,70 @@
+// ! usar para concertar a altura da row. Quando se usa float, a altura colapsa para 0px
+// ! todos os elementos dentro de uma row usam float, então a altura colapsa para 0px
+@mixin clearZeroHeightFloat {
+  // - com isso, esse mixin vai selecionar a row (ou qualquer outro elemento - &)
+  // - .row.
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin regExpGridColSystem {
+  // - [class^=""] = data attribute, seleciona os elementos a partir da classe que começa com "col-1" (^)
+  // - [class$=""] = data attribute, seleciona os elementos a partir da classe que termina com "col-1" ($)
+  // - [class*=""] = data attribute, seleciona os elementos a partir da classe que contenha "col-1" (*)
+  // + [src="Logo"] = seleciona o elemento na qual a sua src bate com "Logo"
+  [class^="col-"] {
+    float: left;
+    // background-color: $colorPrimary;
+
+    &:not(:last-child) {
+      margin-right: $gutterHorizontal;
+
+      @include resize(tabPort) {
+        margin-right: 0;
+        margin-bottom: $gutterVerticalSmall;
+      }
+    }
+
+    @include resize(tabPort) {
+      width: 100% !important;
+    }
+  }
+}
+
+@mixin gridColSystem {
+  // + #{$var} - sintaxe para usar variáveis scss dentro de uma função nátiva do css (calc())
+  // ! #{$gutterHorizontal}
+
+  .col-1-of-2 {
+    width: calc((100% - #{$gutterHorizontal}) / 2);
+  }
+
+  .col-1-of-3 {
+    width: calc((100% - 2 * #{$gutterHorizontal}) / 3);
+  }
+
+  .col-2-of-3 {
+    width: calc(
+      2 * ((100% - 2 * #{$gutterHorizontal}) / 3) + #{$gutterHorizontal}
+    );
+  }
+
+  .col-1-of-4 {
+    width: calc((100% - 3 * #{$gutterHorizontal}) / 4);
+  }
+
+  .col-2-of-4 {
+    width: calc(
+      2 * ((100% - 3 * #{$gutterHorizontal}) / 4) + #{$gutterHorizontal}
+    );
+  }
+
+  .col-3-of-4 {
+    width: calc(
+      3 * ((100% - 3 * #{$gutterHorizontal}) / 4) + 2 * #{$gutterHorizontal}
+    );
+  }
+}
